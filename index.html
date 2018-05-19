@@ -1,0 +1,1993 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Selenium + Python - Automate the browser</title>
+
+    <meta name="description" content="Slides for the basic selenium + python training">
+    <meta name="author" content="Anuj Seth">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+	<section>
+	  <p>
+            <img src="resources/images/seleniumpy.jpg">
+	    <br><small>Trainer <a>Anuj Seth</a> </small></br>
+	  </p>
+	</section>
+
+	<section>
+          <h2>Hello Selenium</h2>
+          <p>The "hello world" for selenium is searching something on google</p>
+          <p>Let's look at a script to do just that<p>
+	</section>
+
+
+        <section>
+          <font size="5">
+            <p>Hello Selenium</p>
+          </font>
+          <pre>
+            <code data-sample='code/hello_selenium.py#3-15'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Hello Selenium</p>
+          </font>
+          <pre>
+            <code data-sample='code/hello_selenium.py#16-31'>
+            </code>
+          </pre>
+        </section>
+
+	<section>
+          <font size="5">
+            <p>Why q ?</p>
+          </font>
+	  <p>
+            <img src="resources/images/google_q.png">
+	  </p>
+	</section>
+
+        <section>
+          <font size="5">
+            <p>Hello Selenium</p>
+          </font>
+          <pre>
+            <code data-sample='code/hello_selenium_lucky.py#24-25'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Hello Selenium</p>
+          </font>
+          <pre>
+            <code data-sample='code/hello_selenium_lucky.py#27-32'>
+            </code>
+          </pre>
+        </section>
+
+
+
+
+	<section>
+          <h2>Why Python ?</h2>
+          <p>Easy to learn, yet powerful high level language</p>
+          <p>Fast and efficient data structures<p>
+	  <p>Supports imperative, object oriented and functional styles of programming</p>
+          <p>Runs on windows, mac and linux and has ports to the JVM and the .NET VM</p>
+	  <p>It's fun</p>
+	</section>
+
+	<section>
+          <h2>Python Interactive Interpreter</h2>
+          <p>You can run any valid Python code on the interactive shell</p>
+	  <p>Use it for exploratory programming</p>
+	</section>
+
+        <section>
+          <pre><code data-trim>
+&gt&gt&gt print("Hello World")
+Hello World
+&gt&gt&gt 1 + 2 + (100 / 25)
+7
+&gt&gt&gt def hello():
+...     print("Hello World")
+... 
+&gt&gt&gt hello()
+Hello World
+&gt&gt&gt x = 'Hello World'
+&gt&gt&gt print(x)
+Hello World
+&gt&gt&gt x
+Hello World
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code data-trim>
+# and if you have an internet connection then type
+&gt&gt&gt import antigravity
+          </code></pre>
+        </section>
+
+	<section>
+	  <p>
+            <img src="resources/images/xkcd-python.png">
+	    <br><small>https://xkcd.com/353/</small></br>
+	  </p>
+	</section>
+
+        <section>
+          <h2>Executing scripts</h2>
+          <p>On the command line</p>
+          <pre><code data-trim>
+anuj@serenity:~/python_training$ python hello.py 
+Hello world
+          </code></pre>
+          <font size="5">
+            <p>Or if you are on linux and you use the shebang (#!) line</p>
+            </font>
+          <pre><code data-trim>
+anuj@serenity:~/python_training/code$ chmod +x ./hello.py
+anuj@serenity:~/python_training/code$ ./hello.py
+Hello world
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>The importance of being indented </h2>
+          <p>Most programming languages use certain characters or keywords to form groups of statements</p>
+          <ul>
+            <li>{ ... }</li>
+            <li>begin .... end</li>
+            <li>do .... done</li>
+          </ul>
+          <p>Python uses indentation to form code blocks</p>
+          <p>In Python indentation is not just a good practise but a requirement</p>
+        </section>
+
+        <section>
+          <pre><code data-trim>
+&gt&gt&gt if 1:
+...     print("Hello")
+... 
+Hello
+
+# try this without the indentation and see what happens
+
+# you can continue a statment on the next line with "\"
+&gt&gt&gt if 1:
+...     1 and \
+... 2
+... 
+2
+
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Data Types and Variables</h2>
+          <p>Variables in Python have a type associated with them, though you need not explicitly specify it</p>
+          <p>Variables can change their value as well as their type during their lifetime</p>
+          <p>But remember Python will not do automatic type conversion like some other languages</p>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Variables</p>
+          </font>
+          <pre><code data-trim>
+&gt&gt&gt i = 42
+&gt&gt&gt type(i)
+&lttype 'int'&gt
+
+&gt&gt&gt i + '3'
+Traceback (most recent call last):
+  File "&ltstdin&gt", line 1, in &ltmodule&gt
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+&gt&gt&gt i = "hello"
+&gt&gt&gt type(i)
+&lttype 'str'&gt
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Variables</p>
+          </font>
+          <pre><code data-trim>
+# in python variables are references to objects
+&gt&gt&gt x = 42
+&gt&gt&gt y = x
+&gt&gt&gt print(x, y)
+(42, 42)
+
+# but are they the same object ?
+&gt&gt&gt print(id(x), id(y))
+(31434048, 31434048)
+
+# what do you think happens when I do this ?
+# does x change  too ?
+&gt&gt&gt y = 43
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Operators</h2>
+          <table> 
+            <tr>
+              <td>+, -</td>
+              <td>Addition, Subtraction</td>
+            </tr>
+            <tr>
+              <td>*, /, %</td>
+              <td>Multiplication, Division, Modulo</td>
+            </tr>
+            <tr>
+              <td>or, and, not</td>
+              <td>Boolean operators</td>
+            </tr>
+            <tr>
+              <td>**</td>
+              <td>exponentiation</td>
+            </tr>
+            <tr>
+              <td>in</td>
+              <td>element of</td>
+            </tr>
+            <tr>
+              <td>&lt, &gt, &gt=, &lt=, ==, !=</td>
+              <td>the usual comparison operators</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Data Types</h2>
+          <ul> 
+            <li>Numbers</li>
+            <li>Sequential Data Types</li>
+            <ul>
+              <li>Strings</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Numbers</p>
+          </font>
+          <pre><code data-trim>
+# integers
+&gt&gt&gt 42
+42
+
+# floats
+&gt&gt&gt 42.0
+42.0
+
+# long numbers, which have unlimited precision
+&gt&gt&gt a = 420000000000000000000000000000000000000L
+&gt&gt&gt a + 1
+420000000000000000000000000000000000001L
+          </code></pre>
+</section>
+
+        <section>
+          <font size="5">
+            <p>Numbers</p>
+          </font>
+          <pre><code data-trim>
+# imaginary numbers
+&gt&gt&gt x = 4 + 5j
+&gt&gt&gt y = 5 + 6j
+&gt&gt&gt x + y
+(9+11j)
+
+# hexadecimal 
+&gt&gt&gt 0xaf
+175
+
+# octal
+&gt&gt&gt 0o10
+8
+          </code></pre>
+</section>
+
+
+        <section>
+          <font size="5">
+            <p>Numbers</p>
+          </font>
+          <pre>
+            <code data-sample='code/test_numbers.py'>
+            </code>
+          </pre>
+        </section>
+        
+        <section>
+          <font size="5">
+            <p>Strings</p>
+          </font>
+          <pre><code data-trim>
+# strings in python can be double quoted
+&gt&gt&gt "Guido van Rossum is the creator of Python"
+
+# single quoted
+&gt&gt&gt 'Python is named after Monty Python'
+
+# triple quoted with &quot or &#39, which can span across lines
+&gt&gt&gt """Hello multi-line
+... world"""
+'Hello multi-line\nworld'
+
+# triple quoted strings can contain embedded quotes
+# try it 
+
+# note: there is no character data type in python
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Strings</p>
+          </font>
+          <pre><code data-trim>
+# strings can be concatenated with +
+&gt&gt&gt "hello" + "world"
+'helloworld'
+
+&gt&gt&gt "hello" + ' ' + "world"
+'hello world'
+
+# if you multiply a string with a number you get repetition
+&gt&gt&gt 'hello' * 2 + ' world'
+'hellohello world'
+
+# you can get the length of a string using len()
+&gt&gt&gt len("hello")
+5
+          </code></pre>
+</section>
+
+
+        <section>
+          <font size="5">
+            <p>Strings</p>
+          </font>
+          <pre><code data-trim>
+# let's test our knowledge of strings
+# open the file test_strings.py
+# and make all the test cases pass
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Manipulation</p>
+          </font>
+          <pre><code data-trim>
+# strings in python are sequences of characters
+&gt&gt&gt s = "a string"
+&gt&gt&gt s[0]
+&#39a&#39
+
+# but remember that they are immutable
+# try doing this 
+# s[1] = 'a'
+
+# if you want elements from the end of the list
+# you can use negative indices
+&gt&gt&gt s[-1]
+&#39g&#39
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Manipulation</p>
+          </font>
+          <pre><code data-trim>
+# you can also get a &#39slice&#39 of the elements in a list
+&gt&gt&gt s[0:4]
+&#39a st&#39
+# negative indices also work with slices
+&gt&gt&gt s[-3:-1]
+&#39in&#39
+
+# what happens if you omit one or both of the start/stop ?
+# s[:]
+
+# does anyone wants to guess what is happening here ?
+&gt&gt&gt s[1::2]
+&#39 tig&#39
+
+# as we have seen we use 3 numbers to define the slice
+# start, stop and step
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Formatting</p>
+          </font>
+          <pre><code data-trim>
+# if you want to format strings for printing 
+# or storing, python provides powerful methods
+
+# the old style looks like this
+&gt&gt&gt  &#39A string: %s, a number:%d&#39 %(&#39one&#39, 2)
+&#39A string: one, a number:2&#39
+
+# the new style looks like this
+&gt&gt&gt  &#39A string: {0}, a number:{1}&#39.format(&#39one&#39, 2)
+&#39A string: one, a number:2&#39
+
+# we will study the new style as in my opinion it is cleaner
+# and more powerful
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Formatting</p>
+          </font>
+          <pre><code data-trim>
+# strings can be padded and aligned left like this
+&gt&gt&gt &quot{0:10}&quot.format(&#39test&#39)
+&#39test      &#39
+# strings can be padded and aligned right like this
+&gt&gt&gt &quot{0:>10}&quot.format(&#39test&#39)
+&#39      test&#39
+# the pad character can be given like this
+&gt&gt&gt  &quot{0:&#42>10}&quot.format(&#39test&#39)
+&#39&#42&#42&#42&#42&#42&#42test&#39
+# and we can center a string like this
+&gt&gt&gt  &quot{0:^10}&quot.format(&#39test&#39)
+&#39   test   &#39
+# your turn, pad &quotzip&quot with &#95 to 6 characters
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Formatting</p>
+          </font>
+          <pre><code data-trim>
+# strings can be truncated using precision
+&gt&gt&gt &quot{0:.2}&quot.format(&#39test&#39)
+&#39te&#39
+
+# your turn, try to truncate the string &quotMighty Mouse&quot to 6 
+# and pad to 10
+# hint:fill and align are inseperable
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Formatting</p>
+          </font>
+          <pre><code data-trim>
+# we can also print numbers
+&gt&gt&gt &quot{0:d}&quot.format(42)
+&#39&#52&#50&#39
+# pad and align them
+&gt&gt&gt &quot{0:5d}&quot.format(42)
+&#39   42&#39
+&gt&gt&gt &quot{0:&lt5d}&quot.format(42)
+&#39&#52&#50   &#39
+# specify precision for floats
+&gt&gt&gt &quot{:06.2f}&quot.format(3.141592653589793)
+&#39&#48&#48&#51.14&#39
+
+# and use named placeholders 
+&gt&gt&gt &quot{first} {last}&quot.format(first=&quotHello&quot, last=&quotWorld!&quot)
+&quotHello World!&quot
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>String Manipulation</p>
+          </font>
+          <pre><code data-trim>
+# let's test our knowledge of string manipulation
+# open the file test_string_manipulation.py
+# and make all the test cases pass.
+# you will encounter some string functions
+# that you have not seen before.
+# when in doubt use help() or raise your hand
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Control Flow Statements</h2>
+          <ul> 
+            <li>Conditional Statements</li>
+            <li>For Loops</li>
+            <li>While Loops</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Conditional Statements</p>
+          </font>
+          <pre>
+            <code data-sample='code/conditional_statements.py'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Conditional Statements - truthiness</p>
+          </font>
+          <font size="6">
+            <p>Everything except the following is considered true in python</p> 
+          </font>
+          <ul> 
+            <li>numeric zero (0, 0L, 0.0)</li>
+            <li>boolean False</li>
+            <li>empty strings/lists/tuples/dictionaries</li>
+            <li>the special value None</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>While loop</p>
+          </font>
+          <pre>
+            <code data-sample='code/while_loop.py'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>While loop - continue</p>
+          </font>
+          <pre>
+            <code data-sample='code/while_loop_2.py'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>For loop</p>
+          </font>
+          <pre>
+            <code data-sample='code/for_loop.py'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>For loop</p>
+          </font>
+          <pre>
+            <code data-sample='code/for_loop_2.py'>
+            </code>
+          </pre>
+        </section>
+
+
+        <section>
+          <h2>Data Types - Continued</h2>
+          <ul> 
+            <li>Sequential Data Types</li>
+            <ul>
+              <li>Lists</li>
+              <li>Tuples</li>
+            </ul>
+          </ul>
+        </section>
+
+
+        <section>
+          <font size="5">
+            <p>Lists</p>
+          </font>
+          <pre><code data-trim>
+# lists are a versatile data type defined like this
+&gt&gt&gt data_types = ["numbers", "strings", "lists", "dictionaries"]
+
+# you can access the elements using indices
+&gt&gt&gt data_types[2]
+&#39lists&#39
+
+# do you think array slicing, as we saw for strings,
+# will also work for lists ?
+# try extracting the last element of this list.
+# how about elements from 2nd through 4th positions ?
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Lists</p>
+          </font>
+          <pre><code data-trim>
+# lists can contain elements of different types
+test_centuries = ["Tendulkar", 51, "Dravid", 36]
+# and even other lists
+test_odi_centuries = ["Tendulkar", [51, 49], "Dravid", [36, 12]]
+# try extracting the ODI centuries scored by Dravid
+
+# you can check for membership in a list using the in operator
+&gt&gt&gt 1 in range(10)
+True
+&gt&gt&gt 1 in range(2, 10)
+False
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>List Assignments</p>
+          </font>
+          <pre>
+            <code data-sample='code/test_list_assignments.py'>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Detour - Slicing In Depth</p>
+          </font>
+          <pre><code data-trim>
+# slices are defined as [a:b:c] where
+# len = length of string, tuple or list
+# c - default = +1. Absolute value indicates steps, 
+#     positive is forward, negative is backward.
+# a -  default = 0, when c is positive or blank. 
+       default = -1, when c is negative.
+# b -  default = len, when c is positive or blank.
+#      default = -(len + 1), when c is negative.
+&gt&gt&gt l = [2, 3, 4]
+&gt&gt&gt l[:-4:-1]
+[4, 3, 2]
+
+# can you guess what this returns ?
+&gt&gt&gt  l[-1:5:1] 
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Detour - Slicing In Depth</p>
+          </font>
+          <pre><code data-trim>
+# and this ?
+&gt&gt&gt l[-5:1]
+
+# indices out of bounds, also called degenerate indices, 
+# are handled gracefully during slicing
+&gt&gt&gt l[-100:]
+[2, 3, 4]
+
+# the same will not hold for normal list access 
+&gt&gt&gt l[-100]
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Lists</p>
+          </font>
+          <pre><code data-trim>
+# open the file test_lists.py
+# and make all the test cases pass.
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Tuples</p>
+          </font>
+          <pre><code data-trim>
+# tuples are immutable lists, defined like this
+&gt&gt&gt t = (-5, 'a', 'c')
+
+# you can access elements like this
+&gt&gt&gt t[1]
+&#39a&#39
+
+# try doing this
+&gt&gt&gt t[0] = &#39this will give an exception&#39
+
+# but why tuples if they are almost like lists ?
+# they are faster than lists
+# they can be used as keys in dictionaries
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Tuples</p>
+          </font>
+          <pre><code data-trim>
+# open the file test_tuples.py
+# and make all the test cases pass.
+
+# note that you can check the type of an object like this
+&gt&gt&gt type([1,2,3]) 
+&lttype &#39list&#39&gt
+&gt&gt&gt type([1,2,3]) == list
+True
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Data Types</h2>
+          <ul> 
+            <li>Dictionaries</li>
+            <li>Sets</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# dictionaries are associative containers or
+# unordered key-value pairs
+&gt&gt&gt x = {'a':1}
+&gt&gt&gt x['a']
+1
+
+# let's create a mapping from programming languages
+# to their creators
+&gt&gt&gt lang_creators = {'c++':'Bjarne Stroustrup', 
+... 'ruby':'Yukihiro Matsumoto'}
+# can you extract the name of the creator of c++ ?
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# this mapping is missing our favorite language,
+# let's fix that
+&gt&gt&gt lang_creators['python'] = 'Guido van Rossum'
+&gt&gt&gt lang_creators
+{'python': 'Guido van Rossum', 'ruby': 'Yukihiro Matsumoto', 'c++': 'Bjarne Stroustrup'}
+
+# what happens if you try to extract a key that does
+# not exist in this dictionary ? 
+# e.g. java
+# you can use the get method on dictionaries to
+# return None or a default value if a key does not exist
+&gt&gt&gt x = lang_creators.get('java')
+
+&gt&gt&gt x = lang_creators.get('java', 'not known')
+# note that get does not add the key to the dict
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# we can check for the existence of a key using 'in'
+&gt&gt&gt 'java' in lang_creators
+False
+&gt&gt&gt 'python' not in lang_creators
+False
+
+# we can delete a key and the associated value
+&gt&gt&gt del lang_creators['c++']
+
+# what do you think the len() function will return ?
+&gt&gt&gt len(lang_creators)
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# dictionaries can have different types as keys or values
+&gt&gt&gt d = {'a string':['a', 'string'], 1:10, 
+... ('a', 'tuple'):'a tuple'}
+
+# the only restriction is that mutable types cannot be keys
+# hence you cannot have lists or dictionaries as keys.
+# there is no restriction on the values stored.
+
+# try to create a dictionary mapping letters a,b,c to their
+# positions in the alphabet and vice-versa
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# you can iterate over the keys of a dictionary like this
+&gt&gt&gt d = {'a string':['a', 'string'], 1:10, 
+... ('a', 'tuple'):'a tuple'}
+&gt&gt&gt for k in d:
+...     print(k)
+
+# you can also use the iterkeys method to get the same result.
+# and use the itervalues method to iterate over only the values
+# stored in a dictionary
+
+# but this the most common iteration pattern
+&gt&gt&gt for k,v in d.iteritems():
+...     print(k,v)
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Dictionaries</p>
+          </font>
+          <pre><code data-trim>
+# open the file test_dictionaries.py
+# and make all the test cases pass.
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Sets</p>
+          </font>
+          <pre><code data-trim>
+# a set contains an unordered, unique collection of
+# immutable objects
+# the set constructor takes an iterable 
+&gt&gt&gt x = set("hello world")
+&gt&gt&gt x
+set([' ', 'e', 'd', 'h', 'l', 'o', 'r', 'w'])
+
+&gt&gt&gt x = set([1, 2, 3, 1])
+&gt&gt&gt x
+set([1, 2, 3])
+
+# you can add elements to a set using the add method
+&gt&gt&gt x.add(5)
+
+# sets cannot contain mutable objects like lists
+&gt&gt&gt x = set([1, 2, 3, 1, ['a', 'b']])
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Sets</p>
+          </font>
+          <pre><code data-trim>
+# there is another variety of a set called the frozenset 
+# which does not allow change
+&gt&gt&gt x = frozenset("hello world")
+&gt&gt&gt x
+frozenset([' ', 'e', 'd', 'h', 'l', 'o', 'r', 'w'])
+
+# try adding an element to this frozen set x
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Sets</p>
+          </font>
+          <pre><code data-trim>
+# let's look at some interesting methods of sets
+&gt&gt&gt x = {"a","b","c","d","e"}
+&gt&gt&gt y = {"b","c"}
+
+&gt&gt&gt x.difference(y)
+set(['a', 'e', 'd'])
+&gt&gt&gt x - y
+set(['a', 'e', 'd'])
+
+&gt&gt&gt x.intersection(y)
+set(['c', 'b'])
+
+&gt&gt&gt y.issubset(x)
+True
+
+&gt&gt&gt x.union(y)
+set(['a', 'c', 'b', 'e', 'd'])
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Sets</p>
+          </font>
+          <pre><code data-trim>
+# open the file test_sets.py
+# and make all the test cases pass.
+          </code></pre>
+        </section>
+
+
+        <section>
+          <font size="5">
+            <p>Zip and List Comprehensions - A necessary detour</p>
+          </font>
+          <pre><code data-trim>
+# we are often confronted with a situation where we have
+# two lists that we want to iterate over simultaneously.
+# let's say we want to create a mapping for all the letters
+# of the alphabet to their positions i.e. {'a':1, 'b':2, .....}
+
+# i can get all the letters like this
+for c in range(97, 123):
+    print(chr(c))
+
+# and i can get the positions using range again.
+# so let's see how we can combine these
+out_list = []
+for c, pos in zip(range(97, 123), range(1, 27)):
+    out_list.append((chr(c), pos,))
+
+alphabet_mapping = dict(out_list)
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Zip and List Comprehensions - A necessary detour</p>
+          </font>
+          <pre><code data-trim>
+# list comprehensions are the pythonic way to apply 
+# transformations to the objects in a list
+&gt&gt&gt l = range(5)
+>>> [x * 2 for x in l]
+[0, 2, 4, 6, 8]
+&gt&gt&gt [x for x in l if (x % 3) == 0]
+[0, 3]
+
+# your turn
+# use list comprehension to create the alphabet to position 
+# mapping from our previous example
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Zip and List Comprehensions - A necessary detour</p>
+          </font>
+          <pre><code data-trim>
+# here is one way of doing that
+dict([(chr(c), pos) for c, pos in zip(range(97, 123), 
+                                      range(1, 27))])
+# and another using dictionary comprehension
+{chr(c):pos for c, pos in zip(range(97, 123), range(1, 27))}
+
+# and we can also take the help of the standard string module
+import string
+{c:pos for c,pos in zip(string.ascii_lowercase, range(1, 27))}
+
+# python also has set comprehension which you will encounter 
+# in a minute
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Zip and List Comprehensions - A necessary detour</p>
+          </font>
+          <pre><code data-trim>
+# let's make some test cases pass
+# open the file test_comprehension.py
+# and get started
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Functions</h2>
+          <ul>
+            <li>Functions are the most basic way of code reuse in most languages</li>
+            <li>You have already used built-in functions like len() or dict()</li>
+            <li>Let's see how you can define your own</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Functions</p>
+          </font>
+          <pre><code data-trim>
+# this is a simple function
+&gt&gt&gt def add(a, b):
+...     return a + b
+... 
+&gt&gt&gt add(5, 4)
+9
+
+# you can put this function in a file and
+# execfile() it on the interpreter prompt
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Functions</p>
+          </font>
+          <pre><code data-trim>
+# this is the same function with an optional parameter
+&gt&gt&gt def add(a, b=5):
+...     return a + b
+... 
+&gt&gt&gt add(5)
+10
+
+# and this is a function with arbitrary number of parameters
+# all the arguments after the required ones are put into a tuple
+&gt&gt&gt def add(a, b, *more):
+...     return a + b + sum(more)
+... 
+&gt&gt&gt add(1, 2, 3, 4)
+10
+
+# can you guess what happens if we call add with just 2 args ?
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Functions</p>
+          </font>
+          <pre><code data-trim>
+# open the file test_line_parser.py and
+# complete the line_parser function.
+# this function takes 3 arguments - a list, a string 
+# and a delimiter.
+# the function splits the string using the delimiter
+# and returns a dictionary with keys from the first arg
+# and corresponding positional values from the split string
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Recursive Functions</p>
+          </font>
+          <pre><code data-trim>
+# some problems tend to have very straightforward recursive 
+# solutions.
+# recursive solutions of factorial or fibonacii are standard
+# learning exercises.
+def factorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Recursive Functions</p>
+          </font>
+          <pre><code data-trim>
+# your turn
+# open the file test_fibonacci.py and fill in the body of the 
+# fib() function.
+# this function generates the nth fibonacci number.
+
+# to refresh your memory
+# F(0) = 0, 
+# F(1) = 1,
+# F(n) = F(n-1) + F(n-2)
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Recursive Functions</p>
+          </font>
+          <pre>
+            <code data-sample='code/solutions/test_fibonacci.py'>
+            </code>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Memoization</p>
+          </font>
+          <pre><code data-trim>
+# did you try to compute the 40th fibonacci number ?
+
+# memoization is a technique where we store the results
+# of expensive computations to reuse.
+# let's try to make our fibonacci faster using memoization
+          </code></pre>
+          <pre>
+            <code data-sample='code/solutions/test_fibonacci_memo.py'>
+            </code>
+        </section>
+
+        <section>
+          <h2>Namespaces and Modules</h2>
+          <ul>
+            <li>Scope</li>
+            <li>Global and local variables</li>
+            <li>Modules</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Scope</p>
+          </font>
+          <pre><code data-trim>
+# scope define the visibility of identifiers like
+# variables or functions.
+# for example functions limit the visibility of variables defined
+# inside them
+&gt&gt&gt def a_function():
+...     s = &#39i am only defined here&#39
+... 
+&gt&gt&gt print(s)
+NameError: name &#39s&#39 is not defined
+
+&gt&gt&gt def a_function():
+...     print(s)
+... 
+&gt&gt&gt s = 'hello world'
+&gt&gt&gt a_function()
+hello world
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Scope</p>
+          </font>
+          <pre><code data-trim>
+# can you guess what will print when we call this function ?
+&gt&gt&gt def a_function():
+...     s = &#39i am only defined here&#39
+...     print(s) 
+&gt&gt&gt s = 'hello world'
+&gt&gt&gt a_function()
+
+# you can deliberately access identifiers in higher scope 
+&gt&gt&gt def a_function():
+...     global s
+...     s = 'changed'
+&gt&gt&gt s
+&#39hello world&#39
+&gt&gt&gt a_function()
+&gt&gt&gt s
+&#39changed&#39
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Namespaces</p>
+          </font>
+          <pre><code data-trim>
+# so what is a namespace ?
+# local names in a function
+# global names in a module 
+# the built-in names e.g. len, abs
+
+# and this is also the order in which python tries to 
+# resolve names.
+
+# practically namespace and scope are interchangeable used
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Modules</p>
+          </font>
+          <pre><code data-trim>
+# what is the need for modules ?
+# why don't i just write all my code in one file ?
+
+# modules are nothing but common python code files.
+# create a file called hello.py with just one function
+def hello():
+    print("hello world")
+
+# create a second file main.py
+import hello
+hello.hello()
+
+# you can avoid the namespace qualifier like this
+from hello import hello
+hello()
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Modules</p>
+          </font>
+          <pre><code data-sample="code/hello.py">
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Modules</p>
+          </font>
+          <pre><code data-trim>
+# how does python find modules ?
+# the following locations are searched
+# directory of the top-level file, i.e. the file being executed.
+# directories of PYTHONPATH, an environment variable.
+# installation path in Linux/Unix e.g. in /usr/lib/python2.7
+
+# you can find out the search directories like this
+&gt&gt&gt import sys
+&gt&gt&gt sys.path
+            </code>
+          </pre>
+        </section>
+
+	<section>
+	  <h2>Regular Expressions</h2>
+	  <blockquote>
+	    Some people, when confronted with a problem, think &ldquo;I know, I'll use regular expressions.&rdquo;<br>Now they have two problems.<br> - Jamie Zawinski
+	  </blockquote>
+	</section>
+
+        <section>
+          <font size="5">
+            <p>Regular Expressions</p>
+          </font>
+          <pre><code data-trim>
+# regular expression allow you to specify a pattern to 
+# be matched against a string
+# to return just the first match
+import re
+m = re.search("fox", "the quick brown fox")
+if m is not None:
+   print(m.group(0))
+
+# to get all the matches or an empty list
+m = re.findall(".?o.?", "the quick brown fox")
+if m:
+   print(m)
+
+# be careful, regexes can be greedy
+m = re.findall(".*fox.*", "the quick brown fox")
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Regular Expressions</p>
+          </font>
+          <pre><code data-trim>
+# if you want to match the start or end of a string
+# use ^ or $
+m = re.findall("fox$", "fox the quick brown fox")
+
+# regexes also support character classes
+m = re.findall("[a-z][nu]{2}[a-z]", "anuj aunt anti rally")
+
+match_landline = re.findall("^0[-0-9]*$", "020-415322")
+
+match_landline = re.findall("^0[-0-9]*$", "9978665479")
+
+# and if you want to match one of the special characters like dot
+postfix_txt = re.search(".txt$", "application_log.txt")
+postfix_txt = re.search(".txt$", "application_logtxt")
+
+postfix_txt = re.search("\.txt$", "application_log.txt")
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Regular Expressions</p>
+          </font>
+          <pre><code data-trim>
+# can you write a regex to validate an IP address ?
+
+# how about an email address ?
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>File Handling</h2>
+          <ul>
+            <li>Reading and writing files in python is similar to other languages</li>
+            <li>Only easier</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>File Handling</p>
+          </font>
+          <pre><code data-sample="code/file_reader.py">
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>File Handling</p>
+          </font>
+          <pre><code data-trim>
+# you can open a file for writing 
+fobj = open("an_output.file", "w")
+fobj.write("hello file world")
+fobj.close()
+
+# note that opening a file for writing that already exists
+# wipes that file
+# use append mode, 'a'
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>File Handling</p>
+          </font>
+          <pre><code data-trim>
+# you can read all the lines of a file in one go
+fobj = open("an_output.file", "r")
+all_the_lines = fobj.readlines()
+fobj.close()
+
+# is there any scenario when you would not want to do this ?
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>File Handling</p>
+          </font>
+          <pre><code data-trim>
+# your turn
+# write a program to read the /var/log/syslog file
+# and print how many times each type of event
+# was logged.
+
+Sep 25 09:43:30 serenity anacron[784]: xxxxxxxxxxxxxx
+
+# the 5th field is the event type.
+# you need to remove the trailing [..] and :
+# note: read the documentation for re.sub
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>File Handling</p>
+          </font>
+          <pre><code data-sample="code/solutions/sys_log.py">
+            </code>
+          </pre>
+        </section>
+
+
+        <section>
+          <h2>Exceptions</h2>
+          <ul>
+            <li>Exception handling in python uses try/catch blocks</li>
+            <li>It is very similar to other languages like Java</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Exceptions</p>
+          </font>
+          <pre><code data-trim>
+# let's take an example
+&gt&gt&gt int(raw_input("Please enter an integer:"))
+Please enter an integer:hello
+...
+ValueError: invalid literal for int() with base 10: &#39hello&#39
+
+# let's fix that
+while True:
+    try:
+        n = raw_input("Please enter an integer: ")
+        n = int(n)
+        break
+    except ValueError:
+        print("No valid integer! Please try again ...")
+print "Great, you successfully entered an integer!"
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Exceptions</p>
+          </font>
+          <pre><code data-sample="code/multi_except.py">
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Object Oriented Programming</h2>
+          <ul>
+            <li>Python does not force you to do OOP unlike languages like Java</li>
+            <li>You can write powerful programs without ever creating a class - it's a matter of choice</li>
+            <li>And you have been using objects all this time</li>
+            <ul>
+              <li>string.format</li>
+              <li>file.read</li>
+              <li>dict.keys</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Object Oriented Programming</h2>
+          <ul>
+            <li>In Python objects store data in variables called fields</li>
+            <li>Functions defined in a class are called methods, to differentiate them from standalone functions</li>
+            <li>Class methods differ from functions in a one way - the self argument</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>OOP</p>
+          </font>
+          <pre><code data-trim>
+# let's say we are a manufacturer of robots.
+# we have 2 types of robots - 2 wheeled, 4 wheeled
+&gt&gt&gt class Robot(object):
+...    pass
+
+&gt&gt&gt r = Robot()
+
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>OOP</p>
+          </font>
+          <pre><code data-sample="code/robots.py#1-17">
+            </code>
+          </pre>
+          <pre><code data-trim>
+# if you put the code in a file calles robots.py
+&gt&gt&gt import robots
+&gt&gt&gt r = robots.Robot('4-wheeled')
+            </code>
+          </pre>
+
+        </section>
+
+        <section>
+          <font size="5">
+            <p>OOP</p>
+          </font>
+          <pre><code data-trim>
+# now our company came out with a walking robot             
+                     </code>
+          </pre>
+
+          <pre><code data-sample="code/robots.py#19-21">
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>OOP</p>
+          </font>
+          <pre><code data-trim>
+# since the walking robots consume more power
+# battery level below 60 is considered low
+                     </code>
+          </pre>
+
+          <pre><code data-sample="code/robots.py#19-24">
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>OOP</p>
+          </font>
+          <pre><code data-trim>
+&gt&gt&gt import robots
+&gt&gt&gt r = robots.Robot('2-wheeled')
+&gt&gt&gt r.charge_battery(41)
+&gt&gt&gt r.is_battery_low()
+False
+&gt&gt&gt b = robots.BiPedal()
+&gt&gt&gt b.charge_battery(41)
+&gt&gt&gt b.is_battery_low()
+True
+            </code>
+          </pre>
+        </section>
+
+
+        <section>
+          <h2>Generators</h2>
+          <ul>
+            <li>Functions that produce a sequence of values for use in iteration</li>
+            <li>They use the yield keyword to create generator objects</li>
+            <li>Python automagically creates the __iter__() and next() methods for your generators</li>
+          </ul>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>A Simple Generator</p>
+          </font>
+          <pre><code data-trim>
+def my_gen():
+    yield 'a'
+    yield 'b'
+
+&gt&gt&gt x = my_gen()
+
+# note that x is a generator object
+&gt&gt&gt x
+&ltgenerator object my_gen at 0x7f5f9f6bdd20&gt
+
+# it will only start producing values when we call next on it
+&gt&gt&gt x.next()
+'a'
+&gt&gt&gt x.next()
+'b'
+
+&gt&gt&gt x.next()
+Traceback (most recent call last):
+  File "&ltstdin&gt", line 1, in &ltmodule&gt
+StopIteration
+
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Another Generator</p>
+          </font>
+          <pre><code data-trim>
+# let's write a generator version of range
+def my_range(n):
+    i = 0
+    while i < n:
+        yield i
+        i += 1
+    return
+
+&gt&gt&gt for n in my_range(5): print n
+...
+0
+1
+2
+3
+4
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Generator Expressions</p>
+          </font>
+          <pre><code data-trim>
+# generator expression look like comprehensions
+# but you have to iterate over them to realize values
+&gt&gt&gt a_list = range(10)
+&gt&gt&gt x = (x for x in a_list if x > 3)
+&gt&gt&gt len(x)
+....
+TypeError: object of type 'generator' has no len()
+&gt&gt&gt x
+<generator object <genexpr> at 0x7f4789d988c0>
+&gt&gt&gt x.next()
+4
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Generators</p>
+          </font>
+          <pre><code data-trim>
+# write a generator called sum_it which
+# returns a running total of an input list
+&gt&gt&gt for i in sum_it(range(2,5)):
+...     print(i)
+... 
+2
+5
+9
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Generators</p>
+          </font>
+          <pre><code data-trim>
+def sum_it(seq):
+    value = 0
+    for num in seq:
+        # The local state of 'value' will be retained 
+        # between iterations
+        value += num
+        yield value
+          </code></pre>
+        </section>
+
+        <section>
+          <font size="5">
+            <p>Why Use Generators ?</p>
+            <p>Generators do not hold or realize all the data in memory</p>
+            <p> In some cases this makes generators faster</p>
+          </font>
+          <pre><code data-trim>
+$ python -m timeit "for i in xrange(1000000):" " pass"
+100 loops, best of 3: 14 msec per loop
+
+$ python -m timeit 'for i in range(1000000):' ' pass'
+10 loops, best of 3: 33.2 msec per loop
+          </code></pre>
+          <font size="5">
+            <p>The main reason for using generators is memory efficiency which allows us to
+              <ul>
+                <li>Work with huge lists</li>
+                <li>Design efficient solutions to some complex problems</li>
+              </ul>
+            </p>
+          </font>
+        </section>
+
+<section>
+  <h2>Tower Of Hanoi</h2>
+  <img src="resources/images/tower_of_hanoi.jpg" width="500" height="500">
+</section>
+
+<section>
+  <p>T(0) = 0</p>
+  <p>T(n) = 2.T(n-1) + 1</p>
+  <br>
+  <p>recursive solution anyone ?</p>
+  <p>does it work for 1000 ?</p>
+</section>
+
+        <section>
+          <pre><code data-trim>
+def hanoi():
+    yield 0
+    last = 0
+    while True:
+        current = (2 * last) + 1
+        yield current
+        last = current
+
+moves = [x for x in zip(hanoi(), xrange(1000 + 1))][-1][0]
+
+# homework: use itertools.izip instead of zip
+#           is there any difference ?
+          </code></pre>
+        </section>
+
+<section>
+  <h2>The Zen of Python</h2>
+  <ul>
+    <li>The guiding principles for your and Python's design</li>
+    <li>Distilled by Tim Peters into 20 aphorisms<sup><font size="6">*</font></sup> only 19 of which have been written down</li>
+    <p> * a terse saying embodying a general truth</p>
+  </ul>
+</section>
+
+<section>
+  <p>1. Beautiful is better than ugly</p>
+  <font size="5">
+    <p>Logical operators - Use of and, or instead of &&, || respectively.</p>
+    <p> Though it is subjective, code seems more readable and beautiful this way.</p>
+  </font>
+  <pre><code data-trim>
+      if (is_valid(a) && b == 0 || s == 'yes') {
+  </code></pre>
+  <font size="5">versus</font>
+  <pre><code data-trim>
+      if is_valid(a) and b == 0 or s == 'yes':
+  </code></pre>
+</section>    
+
+<section>
+  <font size="5">
+    <p>Euclid's Algorithm to find the greatest common divisor in 4 lines:</p>
+  </font>
+  <pre><code data-trim>
+      def gcd(x, y): 
+      while y:
+          x, y = y, x % y 
+      return x
+  </code></pre>    
+  <font size="5">
+    <p>The Python solution captures the beauty of the algorithm, while being concise, explicit and elegant at the same time.</p>
+  </font>
+</section>
+
+<section>
+  <p>2. Explicit is better than implicit.</p>
+  <font size="5">
+    <p>Every time you invoke a function you should name its module explicitly</p>
+  </font>
+  <pre><code data-trim>
+import os
+print os.getcwd()
+  </code></pre>
+  <font size="5">
+    <p>instead of this</p>
+  </font>
+  <pre><code data-trim>
+from os import *
+print getcwd()
+  </code></pre>
+</section>
+
+<section>
+  <font size="5">
+    <p>While Python is dynamically-typed, it is also strongly-typed. Several scripting languages allow things like this</p>
+  </font>
+  <pre><code data-trim>
+<?php $foo = "5"; 
+echo $foo * 3; 
+?> 
+[$]> php test.php 
+15
+  </code></pre>
+  <font size="5">
+    <p>This is known as type coercion.</p>
+    <p>In Python, multiplying a string by an integer will print the string that many times</p>
+  </font>
+  <pre><code data-trim>
+&gt&gt&gt foo = "5" 
+&gt&gt&gt foo * 3 
+'555'
+  </code></pre>
+</section>
+<section>
+  <font size="5">
+    <p>Adding them, however, produces an exception</p>
+    <p>If you really want to add a string and integer, then you need to be explicit</p>
+  </font>
+  <pre><code data-trim>
+&gt&gt&gt int(foo)+3
+8
+  </code></pre>
+</section>
+
+<section>
+  <p>3. Simple is better than complex</p>
+</section>
+
+<section>
+  <p>6. Sparse is better than dense.</p>
+  <pre><code data-trim>
+if i>0: return sqrt(i) 
+elif i==0: return 0 
+else: return 1j * sqrt(-i)
+  </code></pre>
+  <font size="5">
+    <p>versus</p>
+  </font>
+  <pre><code data-trim>
+if i > 0: 
+    return sqrt(i) 
+elif i == 0: 
+    return 0 
+else: 
+    return 1j * sqrt(-i)
+  </code></pre>
+  <font size="5">
+    <p>To rephrase, "Don't try to stick too much code on one line."</p>
+  </font>
+</section>
+
+<section>
+  <p>7. Readability Counts.</p>
+  <font size="5">
+    <p>Compare C and Python</p>
+  </font>
+  <pre><code data-trim>
+#include &ltstdio.h&gt 
+int main(void) 
+{ 
+    printf("Hello, world!\n"); 
+    return(0); 
+}
+  </code></pre>
+  <pre><code data-trim>
+print "Hello world!"
+  </code></pre>
+  <font size="5">
+    <p>And what about indentation?</p>
+    <p>Indented code is more readable. Thus, in Python it's mandatory.</p>
+  </font>
+</section>
+
+<section>
+  <p>10. Errors should never pass silently.</p>
+  <font size="5">
+    <p>Never do this</p>
+  </font>
+  <pre><code data-trim>
+try: 
+    import this 
+except ImportError: 
+    pass
+  </code></pre>
+</section>
+<section>
+  <p>11. Unless explicitly silenced.</p>
+  <pre><code data-trim>
+try: 
+    v = d[k] 
+except KeyError: 
+    v = d[k] = default
+  </code></pre>
+</section>
+
+<section>
+  <p>12. In the face of ambiguity, refuse the temptation to guess.</p>
+  <pre><code data-trim>
+if not a and b:
+    do something
+  </code></pre>
+  <font size="5">
+    <p>What binds more tightly 'not' or 'and'?</p> 
+    <p>The syntax is unambiguous but my memory is not.</p>
+    <p>Use parentheses to make your intent clear</p>
+  </font>
+  <pre><code data-trim>
+if not (a and b):
+    do something
+  </code></pre>
+</section>
+
+<section>
+  <p>13. There should be one-- and preferably only one --obvious way to do it.</p> 
+  <font size="5">
+    <p>This is the exact opposite Perl Programming Language's motto - there's more than one way to do it</p>
+    <p>There should be one module for every need</p>
+    <p>How many ways could you provide to "iterate over a sequence" in C++ ? 
+      <ul>
+        <li>Iterating over an array with integers or pointers</li>
+        <li>iterating over STL vectors with various kinds of iterators</li>
+      </ul>
+    <p>In Python there's only one way</p>
+  </font>
+  <pre><code data-trim>
+      for element in sequence:
+  </code></pre>
+</section>
+
+<section>
+  <p>14. Although that way may not be obvious at first unless you're Dutch.</p>
+  <font size="5">
+    <p>The classic ternary operator (a = cond?expr1:expr2 in C) was debated hotly in the community.</p> 
+    <p>Guido came up with this</p>
+  </font>
+  <pre><code data-trim>
+      a = expr1 if cond else expr2
+  </code></pre>
+  <font size="5">
+    <p>This is one way to do this, and it isn't obvious at first.</p>
+  </font>
+</section>
+
+	<section>
+	  <blockquote>
+ Python is an experiment in how much freedom programmers need.<br>Too much freedom and nobody can read another's code;<br> too little and expressiveness is endangered.<br>- Guido van Rossum
+	  </blockquote>
+	</section>
+
+ 
+</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  center: true,
+
+  transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+  // Optional reveal.js plugins
+  //math: {
+  //mathjax: 'plugin/math/MathJax.js',
+  //config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+  //},
+  dependencies: [
+  { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  { src: 'plugin/zoom-js/zoom.js', async: true },
+  { src: 'plugin/notes/notes.js', async: true },
+  //{ src: 'plugin/math/math.js', async: true },
+  { src: 'plugin/reveal-sampler-master/sampler.js'}
+  ]
+  });
+
+</script>
+
+</body>
+</html>
